@@ -1,4 +1,4 @@
-package com.example.sensor_emu;
+package com.sensor_emu;
 
 import org.junit.Test;
 

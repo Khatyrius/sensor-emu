@@ -1,4 +1,4 @@
-package com.example.sensor_emu;
+package com.sensor_emu;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.example.sensor_emu", appContext.getPackageName());
+        assertEquals("com.sensor_emu", appContext.getPackageName());
     }
 }
