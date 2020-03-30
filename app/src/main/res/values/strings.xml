@@ -1,3 +1,4 @@
 <resources>
   <string name="app_name">Sensor Emulator</string>
+  <string name="about">About</string>
 </resources>
