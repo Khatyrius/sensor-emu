@@ -31,7 +31,7 @@ public class TestUtil {
         return energy;
     }
 
-    public static Humidity createHumidity(final Long id, final float value, final double timestamp) {
+    public static Humidity createHumidity(final Long id, final float value, final long timestamp) {
         final Humidity humidity = new Humidity();
 
         if(id != null ) {
@@ -43,7 +43,7 @@ public class TestUtil {
         return humidity;
     }
 
-    public static Pressure createPressure(final Long id, final float value, final double timestamp) {
+    public static Pressure createPressure(final Long id, final float value, final long timestamp) {
         final Pressure pressure = new Pressure();
 
         if(id != null ) {
@@ -55,7 +55,7 @@ public class TestUtil {
         return pressure;
     }
 
-    public static Temperature createTemperature(final Long id, final float value, final double timestamp) {
+    public static Temperature createTemperature(final Long id, final float value, final long timestamp) {
         final Temperature temperature = new Temperature();
 
         if(id != null ) {
@@ -67,7 +67,7 @@ public class TestUtil {
         return temperature;
     }
 
-    public static EnergyFrequency createEnergyFrequency(final Long id, final float value, final double timestamp) {
+    public static EnergyFrequency createEnergyFrequency(final Long id, final int value, final long timestamp) {
         final EnergyFrequency energyFrequency = new EnergyFrequency();
 
         if(id != null ) {
@@ -79,7 +79,7 @@ public class TestUtil {
         return energyFrequency;
     }
 
-    public static HumidityFrequency createHumidityFrequency(final Long id, final float value, final double timestamp) {
+    public static HumidityFrequency createHumidityFrequency(final Long id, final int value, final long timestamp) {
         final HumidityFrequency humidityFrequency = new HumidityFrequency();
 
         if(id != null ) {
@@ -91,7 +91,7 @@ public class TestUtil {
         return humidityFrequency;
     }
 
-    public static PressureFrequency createPressureFrequency(final Long id, final float value, final double timestamp) {
+    public static PressureFrequency createPressureFrequency(final Long id, final int value, final long timestamp) {
         final PressureFrequency pressureFrequency = new PressureFrequency();
 
         if(id != null ) {
@@ -103,7 +103,7 @@ public class TestUtil {
         return pressureFrequency;
     }
 
-    public static TemperatureFrequency createTemperatureFrequency(final Long id, final float value, final double timestamp) {
+    public static TemperatureFrequency createTemperatureFrequency(final Long id, final int value, final long timestamp) {
         final TemperatureFrequency temperatureFrequency = new TemperatureFrequency();
 
         if(id != null ) {
@@ -115,7 +115,7 @@ public class TestUtil {
         return temperatureFrequency;
     }
 
-    public static Timestamp createTimestamp(final Long id, final float value, final double timestamp) {
+    public static Timestamp createTimestamp(final Long id, final int value, final long timestamp) {
         final Timestamp ts = new Timestamp();
 
         if(id != null ) {

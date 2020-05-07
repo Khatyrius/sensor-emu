@@ -33,7 +33,7 @@ import com.sensor_emu.model.measurement.Temperature;
         Humidity.class,
         Pressure.class,
         Temperature.class
-}, version = 1)
+}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static final String DB_NAME = "sensor-emu";
@@ -47,7 +47,7 @@ public abstract class AppDatabase extends RoomDatabase {
     }
 
     private static AppDatabase create(final Context context) {
-        return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).build();
+        return Room.databaseBuilder(context, AppDatabase.class, DB_NAME).allowMainThreadQueries().build();
     }
 
     public abstract EnergyFrequencyDao getEnergyFrequencyDao();

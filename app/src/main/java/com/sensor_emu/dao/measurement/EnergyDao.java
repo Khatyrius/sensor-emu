@@ -17,8 +17,8 @@ public abstract class EnergyDao {
     @Query("SELECT * FROM `ENERGY`")
     public abstract List<Energy> getAll();
 
-    @Query("SELECT * FROM `ENERGY` WHERE `ts`=:timestamp")
-    public abstract List<Energy> getAllByTimestamp(final float timestamp);
+    @Query("SELECT * FROM `ENERGY` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract List<Energy> getByTimestamp(final long timestampStart, final long timestampEnd);
 
     @Insert
     public abstract void insert(final Energy... params);

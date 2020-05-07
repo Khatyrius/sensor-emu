@@ -77,19 +77,35 @@ public class DaoInstrumentedTest {
     @Test
     public void shouldInsertEnergyAndGetAllByTimestamp() {
         // given
-        final Energy energy = TestUtil.createEnergy(
+        final Energy energy1 = TestUtil.createEnergy(
                 1L, 123,
                 456, 789,
                 1011, 1213,
                 1415, 1617
         );
 
+        final Energy energy2 = TestUtil.createEnergy(
+                2L, 456,
+                789, 910,
+                213, 134,
+                867, 343
+        );
+
+        final Energy energy3 = TestUtil.createEnergy(
+                3L, 645,
+                456, 767889,
+                1061, 980,
+                532, 52
+        );
+
         // when
-        energyDao.insert(energy);
+        energyDao.insert(energy1);
+        energyDao.insert(energy2);
+        energyDao.insert(energy3);
 
         // then
-        final List<Energy> result = energyDao.getAllByTimestamp(energy.getTimestamp());
-        assertEquals(result.get(0), energy);
+        final List<Energy> result = energyDao.getByTimestamp(100L, 343L);
+        assertEquals(result.get(0), energy2);
     }
 
     @Test

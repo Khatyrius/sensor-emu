@@ -2,19 +2,20 @@ package com.sensor_emu.model;
 
 import androidx.room.ColumnInfo;
 import androidx.room.PrimaryKey;
+
 import java.util.Objects;
 
-public class AbstractEntity {
+public class AbstractConfigurableEntity {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     private long id;
 
     @ColumnInfo(name = "value")
-    private float value;
+    private int value;
 
     @ColumnInfo(name = "ts")
-    private double timestamp;
+    private long timestamp;
 
     public long getId() {
         return id;
@@ -24,19 +25,19 @@ public class AbstractEntity {
         this.id = id;
     }
 
-    public float getValue() {
+    public int getValue() {
         return value;
     }
 
-    public void setValue(final float value) {
+    public void setValue(final int value) {
         this.value = value;
     }
 
-    public double getTimestamp() {
+    public long getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(final double timestamp) {
+    public void setTimestamp(final long timestamp) {
         this.timestamp = timestamp;
     }
 
@@ -48,7 +49,7 @@ public class AbstractEntity {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        final AbstractEntity that = (AbstractEntity) o;
+        final AbstractConfigurableEntity that = (AbstractConfigurableEntity) o;
         return id == that.id &&
                 Float.compare(that.value, value) == 0 &&
                 Double.compare(that.timestamp, timestamp) == 0;
