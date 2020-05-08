@@ -4,10 +4,10 @@ import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Update;
-import com.sensor_emu.model.AbstractEntity;
+import com.sensor_emu.model.AbstractMeasurementEntity;
 
 @Dao
-public abstract class GenericDao<T extends AbstractEntity> {
+public abstract class GenericMeasurementDao<T extends AbstractMeasurementEntity> {
 
     @Insert
     public abstract void insert(final T params);
