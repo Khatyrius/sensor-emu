@@ -13,6 +13,9 @@ public abstract class PressureFrequencyDao extends GenericConfigurableDao<Pressu
     @Query("SELECT * FROM `PRESS_F` WHERE `id`=:id")
     public abstract PressureFrequency getById(final long id);
 
+    @Query("SELECT * FROM `PRESS_F` ORDER BY `id` DESC LIMIT 0, 1")
+    public abstract PressureFrequency getByHighestId();
+
     @Query("SELECT * FROM `PRESS_F`")
     public abstract List<PressureFrequency> getAll();
 

@@ -13,6 +13,9 @@ public abstract class TemperatureFrequencyDao extends GenericConfigurableDao<Tem
     @Query("SELECT * FROM `TEMP_F` WHERE `id`=:id")
     public abstract TemperatureFrequency getById(final long id);
 
+    @Query("SELECT * FROM `TEMP_F` ORDER BY `id` DESC LIMIT 0, 1")
+    public abstract TemperatureFrequency getByHighestId();
+
     @Query("SELECT * FROM `TEMP_F`")
     public abstract List<TemperatureFrequency> getAll();
 
