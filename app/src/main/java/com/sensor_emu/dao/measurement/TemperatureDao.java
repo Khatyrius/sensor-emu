@@ -17,4 +17,7 @@ public abstract class TemperatureDao extends GenericMeasurementDao<Temperature> 
 
     @Query("SELECT * FROM `TEMP` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract List<Temperature> getByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `TEMP` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
 }

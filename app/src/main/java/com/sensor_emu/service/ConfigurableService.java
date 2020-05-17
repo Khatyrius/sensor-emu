@@ -103,6 +103,54 @@ public class ConfigurableService {
     }
 
     public List<TemperatureFrequency> getTemperatureFrequencyListByTimestamp(final long timestampStart, final long timestampEnd) {
-        return temperatureFrequencyDao.getByTimestamp(timestampStart, timestampStart);
+        return temperatureFrequencyDao.getByTimestamp(timestampStart, timestampEnd);
+    }
+
+    public void deleteEnergyFrequencyByTimestamp(final long timestampStart, final long timestampEnd) {
+        final List<EnergyFrequency> list = energyFrequencyDao.getByTimestamp(timestampStart, timestampEnd);
+        final EnergyFrequency energyFrequency = energyFrequencyDao.getByHighestId();
+        if(list != null) {
+            if(list.contains(energyFrequency)) {
+                energyFrequencyDao.deleteByTimestampAndId(timestampStart, timestampEnd, energyFrequency.getId());
+            } else {
+                energyFrequencyDao.deleteByTimestamp(timestampStart, timestampEnd);
+            }
+        }
+    }
+
+    public void deleteHumidityFrequencyByTimestamp(final long timestampStart, final long timestampEnd) {
+        final List<HumidityFrequency> list = humidityFrequencyDao.getByTimestamp(timestampStart, timestampEnd);
+        final HumidityFrequency humidityFrequency = humidityFrequencyDao.getByHighestId();
+        if(list != null) {
+            if(list.contains(humidityFrequency)) {
+                humidityFrequencyDao.deleteByTimestampAndId(timestampStart, timestampEnd, humidityFrequency.getId());
+            } else {
+                humidityFrequencyDao.deleteByTimestamp(timestampStart, timestampEnd);
+            }
+        }
+    }
+
+    public void deletePressureFrequencyByTimestamp(final long timestampStart, final long timestampEnd) {
+        final List<PressureFrequency> list = pressureFrequencyDao.getByTimestamp(timestampStart, timestampEnd);
+        final PressureFrequency pressureFrequency = pressureFrequencyDao.getByHighestId();
+        if(list != null) {
+            if(list.contains(pressureFrequency)) {
+                pressureFrequencyDao.deleteByTimestampAndId(timestampStart, timestampEnd, pressureFrequency.getId());
+            } else {
+                pressureFrequencyDao.deleteByTimestamp(timestampStart, timestampEnd);
+            }
+        }
+    }
+
+    public void deleteTemperatureFrequencyByTimestamp(final long timestampStart, final long timestampEnd) {
+        final List<TemperatureFrequency> list = temperatureFrequencyDao.getByTimestamp(timestampStart, timestampEnd);
+        final TemperatureFrequency temperatureFrequency = temperatureFrequencyDao.getByHighestId();
+        if(list != null) {
+            if (list.contains(temperatureFrequency)) {
+                temperatureFrequencyDao.deleteByTimestampAndId(timestampStart, timestampEnd, temperatureFrequency.getId());
+            } else {
+                temperatureFrequencyDao.deleteByTimestamp(timestampStart, timestampEnd);
+            }
+        }
     }
 }
