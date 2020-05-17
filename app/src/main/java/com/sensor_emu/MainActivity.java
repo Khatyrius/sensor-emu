@@ -2,13 +2,11 @@ package com.sensor_emu;
 
 import android.os.Bundle;
 import android.view.View;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.sensor_emu.service.thread.EnergyThread;
-import com.sensor_emu.service.thread.HumidityThread;
-import com.sensor_emu.service.thread.PressureThread;
-import com.sensor_emu.service.thread.TemperatureThread;
+import com.sensor_emu.thread.EnergyThread;
+import com.sensor_emu.thread.HumidityThread;
+import com.sensor_emu.thread.PressureThread;
+import com.sensor_emu.thread.TemperatureThread;
 
 public class MainActivity extends AppCompatActivity {
 

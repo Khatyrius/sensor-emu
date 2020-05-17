@@ -6,16 +6,8 @@ import android.content.Context;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
-
-import com.sensor_emu.dao.configurable.EnergyFrequencyDao;
-import com.sensor_emu.dao.configurable.HumidityFrequencyDao;
-import com.sensor_emu.dao.configurable.PressureFrequencyDao;
-import com.sensor_emu.dao.configurable.TemperatureFrequencyDao;
+import com.sensor_emu.dao.GenericDao;
 import com.sensor_emu.dao.configurable.TimestampDao;
-import com.sensor_emu.dao.measurement.EnergyDao;
-import com.sensor_emu.dao.measurement.HumidityDao;
-import com.sensor_emu.dao.measurement.PressureDao;
-import com.sensor_emu.dao.measurement.TemperatureDao;
 import com.sensor_emu.db.AppDatabase;
 import com.sensor_emu.model.configurable.EnergyFrequency;
 import com.sensor_emu.model.configurable.HumidityFrequency;
@@ -27,7 +19,6 @@ import com.sensor_emu.model.measurement.Humidity;
 import com.sensor_emu.model.measurement.Pressure;
 import com.sensor_emu.model.measurement.Temperature;
 import com.sensor_emu.utils.TestUtil;
-
 import java.util.Arrays;
 import java.util.List;
 import org.junit.After;
@@ -35,22 +26,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 @RunWith(AndroidJUnit4.class)
 public class DaoInstrumentedTest {
 
-    private EnergyDao energyDao;
-    private HumidityDao humidityDao;
-    private PressureDao pressureDao;
-    private TemperatureDao temperatureDao;
-    private EnergyFrequencyDao energyFrequencyDao;
-    private HumidityFrequencyDao humidityFrequencyDao;
-    private PressureFrequencyDao pressureFrequencyDao;
-    private TemperatureFrequencyDao temperatureFrequencyDao;
+    private GenericDao<Energy> energyDao;
+    private GenericDao<Humidity> humidityDao;
+    private GenericDao<Pressure> pressureDao;
+    private GenericDao<Temperature> temperatureDao;
+    private GenericDao<EnergyFrequency> energyFrequencyDao;
+    private GenericDao<HumidityFrequency> humidityFrequencyDao;
+    private GenericDao<PressureFrequency> pressureFrequencyDao;
+    private GenericDao<TemperatureFrequency> temperatureFrequencyDao;
     private TimestampDao timestampDao;
     private AppDatabase db;
 
@@ -238,5 +224,45 @@ public class DaoInstrumentedTest {
         // then
         final Timestamp result = timestampDao.getById(id);
         assertEquals(result, timestamp);
+    }
+
+    @Test
+    public void shouldGetFirstTimestampFromTemperatureFrequency() {
+        // given
+        final TemperatureFrequency temperatureFrequency1 = TestUtil
+                .createTemperatureFrequency(1L, 123, 456);
+        final TemperatureFrequency temperatureFrequency2 = TestUtil
+                .createTemperatureFrequency(2L, 789, 1000);
+        final TemperatureFrequency temperatureFrequency3 = TestUtil
+                .createTemperatureFrequency(3L, 333, 2222);
+        temperatureFrequencyDao
+                .insert(temperatureFrequency1, temperatureFrequency2, temperatureFrequency3);
+
+        // when
+        final long actual = temperatureFrequencyDao.getFirstTimestamp();
+
+        // then
+        final long expected = 456;
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetLastTimestampFromTemperatureFrequency() {
+        // given
+        final TemperatureFrequency temperatureFrequency1 = TestUtil
+                .createTemperatureFrequency(1L, 123, 456);
+        final TemperatureFrequency temperatureFrequency2 = TestUtil
+                .createTemperatureFrequency(2L, 789, 1000);
+        final TemperatureFrequency temperatureFrequency3 = TestUtil
+                .createTemperatureFrequency(3L, 333, 2222);
+        temperatureFrequencyDao
+                .insert(temperatureFrequency1, temperatureFrequency2, temperatureFrequency3);
+
+        // when
+        final long actual = temperatureFrequencyDao.getLastTimestamp();
+
+        // then
+        final long expected = 2222;
+        assertEquals(expected, actual);
     }
 }

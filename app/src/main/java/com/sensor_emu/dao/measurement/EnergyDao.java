@@ -1,15 +1,13 @@
 package com.sensor_emu.dao.measurement;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
-import androidx.room.Insert;
 import androidx.room.Query;
-import androidx.room.Update;
+import com.sensor_emu.dao.GenericDao;
 import com.sensor_emu.model.measurement.Energy;
 import java.util.List;
 
 @Dao
-public abstract class EnergyDao {
+public abstract class EnergyDao extends GenericDao<Energy> {
 
     @Query("SELECT * FROM `ENERGY` WHERE `id`=:id")
     public abstract Energy getById(final long id);
@@ -23,12 +21,11 @@ public abstract class EnergyDao {
     @Query("DELETE FROM `ENERGY` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
 
-    @Insert
-    public abstract void insert(final Energy... params);
+    @Override
+    @Query("SELECT `ts` FROM `ENERGY` ORDER BY `ts` ASC LIMIT 0, 1")
+    public abstract long getFirstTimestamp();
 
-    @Update
-    public abstract void update(final Energy energy);
-
-    @Delete
-    public abstract void delete(final Energy energy);
+    @Override
+    @Query("SELECT `ts` FROM `ENERGY` ORDER BY `ts` DESC LIMIT 0, 1")
+    public abstract long getLastTimestamp();
 }

@@ -2,12 +2,12 @@ package com.sensor_emu.dao.measurement;
 
 import androidx.room.Dao;
 import androidx.room.Query;
-import com.sensor_emu.dao.GenericMeasurementDao;
+import com.sensor_emu.dao.GenericDao;
 import com.sensor_emu.model.measurement.Humidity;
 import java.util.List;
 
 @Dao
-public abstract class HumidityDao extends GenericMeasurementDao<Humidity> {
+public abstract class HumidityDao extends GenericDao<Humidity> {
 
     @Query("SELECT * FROM `HUM` WHERE `id`=:id")
     public abstract Humidity getById(final long id);
@@ -20,4 +20,12 @@ public abstract class HumidityDao extends GenericMeasurementDao<Humidity> {
 
     @Query("DELETE FROM `HUM` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Override
+    @Query("SELECT `ts` FROM `HUM` ORDER BY `ts` ASC LIMIT 0, 1")
+    public abstract long getFirstTimestamp();
+
+    @Override
+    @Query("SELECT `ts` FROM `HUM` ORDER BY `ts` DESC LIMIT 0, 1")
+    public abstract long getLastTimestamp();
 }

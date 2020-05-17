@@ -1,4 +1,4 @@
-package com.sensor_emu.service.thread;
+package com.sensor_emu.thread;
 
 import android.content.Context;
 
