@@ -11,6 +11,7 @@ public class TemperatureThread implements Runnable{
     private final MeasurementService measurementService;
     private final ConfigurableService configurableService;
     private TemperatureFrequency frequency;
+    private static final int DEFAULT_FREQUENCY = 5000;
 
     public TemperatureThread(final Context context) {
         measurementService = new MeasurementService(context);
@@ -29,8 +30,9 @@ public class TemperatureThread implements Runnable{
                     e.printStackTrace();
                 }
             } else {
+                configurableService.setTemperatureFrequency(DEFAULT_FREQUENCY);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(DEFAULT_FREQUENCY);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

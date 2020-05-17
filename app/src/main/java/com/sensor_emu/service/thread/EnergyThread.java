@@ -11,6 +11,7 @@ public class EnergyThread implements Runnable {
     private final MeasurementService measurementService;
     private final ConfigurableService configurableService;
     private EnergyFrequency frequency;
+    private static final int DEFAULT_FREQUENCY = 5000;
 
     public EnergyThread(final Context context) {
         measurementService = new MeasurementService(context);
@@ -29,8 +30,9 @@ public class EnergyThread implements Runnable {
                     e.printStackTrace();
                 }
             } else {
+                configurableService.setEnergyFrequency(DEFAULT_FREQUENCY);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(DEFAULT_FREQUENCY);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

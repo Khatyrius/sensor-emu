@@ -21,4 +21,10 @@ public abstract class EnergyFrequencyDao extends GenericConfigurableDao<EnergyFr
 
     @Query("SELECT * FROM `ENERGY_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract List<EnergyFrequency> getByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `ENERGY_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `ENERGY_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd AND `id`<:id")
+    public abstract void deleteByTimestampAndId(final long timestampStart, final long timestampEnd, final long id);
 }

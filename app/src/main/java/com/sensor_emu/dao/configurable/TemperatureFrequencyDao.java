@@ -21,4 +21,10 @@ public abstract class TemperatureFrequencyDao extends GenericConfigurableDao<Tem
 
     @Query("SELECT * FROM `TEMP_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract List<TemperatureFrequency> getByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `TEMP_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `TEMP_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd AND `id`<:id")
+    public abstract void deleteByTimestampAndId(final long timestampStart, final long timestampEnd, final long id);
 }

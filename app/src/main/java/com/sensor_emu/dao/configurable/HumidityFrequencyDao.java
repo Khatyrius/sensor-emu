@@ -21,4 +21,10 @@ public abstract class HumidityFrequencyDao extends GenericConfigurableDao<Humidi
 
     @Query("SELECT * FROM `HUM_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract List<HumidityFrequency> getByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `HUM_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `HUM_F` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd AND `id`<:id")
+    public abstract void deleteByTimestampAndId(final long timestampStart, final long timestampEnd, final long id);
 }

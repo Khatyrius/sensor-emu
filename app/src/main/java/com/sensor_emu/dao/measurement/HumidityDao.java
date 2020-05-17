@@ -17,4 +17,7 @@ public abstract class HumidityDao extends GenericMeasurementDao<Humidity> {
 
     @Query("SELECT * FROM `HUM` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract List<Humidity> getByTimestamp(final long timestampStart, final long timestampEnd);
+
+    @Query("DELETE FROM `HUM` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
 }

@@ -20,6 +20,9 @@ public abstract class EnergyDao {
     @Query("SELECT * FROM `ENERGY` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
     public abstract List<Energy> getByTimestamp(final long timestampStart, final long timestampEnd);
 
+    @Query("DELETE FROM `ENERGY` WHERE `ts`>=:timestampStart AND `ts`<=:timestampEnd")
+    public abstract void deleteByTimestamp(final long timestampStart, final long timestampEnd);
+
     @Insert
     public abstract void insert(final Energy... params);
 

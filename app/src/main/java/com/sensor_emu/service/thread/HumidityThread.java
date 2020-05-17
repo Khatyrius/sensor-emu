@@ -11,6 +11,7 @@ public class HumidityThread implements Runnable{
     private final MeasurementService measurementService;
     private final ConfigurableService configurableService;
     private HumidityFrequency frequency;
+    private static final int DEFAULT_FREQUENCY = 5000;
 
     public HumidityThread(final Context context) {
         measurementService = new MeasurementService(context);
@@ -29,8 +30,9 @@ public class HumidityThread implements Runnable{
                     e.printStackTrace();
                 }
             } else {
+                configurableService.setHumidityFrequency(DEFAULT_FREQUENCY);
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(DEFAULT_FREQUENCY);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

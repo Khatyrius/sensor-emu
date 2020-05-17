@@ -87,6 +87,22 @@ public class MeasurementService {
         return energyDao.getByTimestamp(timestampStart, timestampEnd);
     }
 
+    public void deleteTemperatureByTimestamp(final long timestampStart, final long timestampEnd) {
+        temperatureDao.deleteByTimestamp(timestampStart, timestampEnd);
+    }
+
+    public void deleteHumidityByTimestamp(final long timestampStart, final long timestampEnd) {
+        humidityDao.deleteByTimestamp(timestampStart, timestampEnd);
+    }
+
+    public void deletePressureByTimestamp(final long timestampStart, final long timestampEnd) {
+        pressureDao.deleteByTimestamp(timestampStart, timestampEnd);
+    }
+
+    public void deleteEnergyByTimestamp(final long timestampStart, final long timestampEnd) {
+        energyDao.deleteByTimestamp(timestampStart, timestampEnd);
+    }
+
     private Temperature generateTemperature() {
         final Temperature temperature = new Temperature();
         final float value = (new Random().nextFloat())*50 - 20;
