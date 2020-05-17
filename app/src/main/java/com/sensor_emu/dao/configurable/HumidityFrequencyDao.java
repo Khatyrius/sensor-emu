@@ -13,6 +13,9 @@ public abstract class HumidityFrequencyDao extends GenericConfigurableDao<Humidi
     @Query("SELECT * FROM `HUM_F` WHERE `id`=:id")
     public abstract HumidityFrequency getById(final long id);
 
+    @Query("SELECT * FROM `HUM_F` ORDER BY `id` DESC LIMIT 0, 1")
+    public abstract HumidityFrequency getByHighestId();
+
     @Query("SELECT * FROM `HUM_F`")
     public abstract List<HumidityFrequency> getAll();
 

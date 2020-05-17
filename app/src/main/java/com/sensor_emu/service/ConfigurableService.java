@@ -58,6 +58,22 @@ public class ConfigurableService {
         temperatureFrequencyDao.insert(temperatureFrequency);
     }
 
+    public EnergyFrequency getNewestEnergyFrequency() {
+        return energyFrequencyDao.getByHighestId();
+    }
+
+    public HumidityFrequency getNewestHumidityFrequency() {
+        return humidityFrequencyDao.getByHighestId();
+    }
+
+    public PressureFrequency getNewestPressureFrequency() {
+        return pressureFrequencyDao.getByHighestId();
+    }
+
+    public TemperatureFrequency getNewestTemperatureFrequency() {
+        return temperatureFrequencyDao.getByHighestId();
+    }
+
     public List<EnergyFrequency> getEnergyFrequencyList() {
         return energyFrequencyDao.getAll();
     }

@@ -13,6 +13,9 @@ public abstract class EnergyFrequencyDao extends GenericConfigurableDao<EnergyFr
     @Query("SELECT * FROM `ENERGY_F` WHERE `id`=:id")
     public abstract EnergyFrequency getById(final long id);
 
+    @Query("SELECT * FROM `ENERGY_F` ORDER BY `id` DESC LIMIT 0, 1")
+    public abstract EnergyFrequency getByHighestId();
+
     @Query("SELECT * FROM `ENERGY_F`")
     public abstract List<EnergyFrequency> getAll();
 
