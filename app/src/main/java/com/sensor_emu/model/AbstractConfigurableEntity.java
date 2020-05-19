@@ -1,29 +1,23 @@
 package com.sensor_emu.model;
 
 import androidx.room.ColumnInfo;
-import androidx.room.PrimaryKey;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.Objects;
 
-public class AbstractConfigurableEntity {
-
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private long id;
+@JsonPropertyOrder({
+        "ts",
+        "value"
+})
+public class AbstractConfigurableEntity extends AbstractEntity {
 
     @ColumnInfo(name = "value")
+    @JsonProperty("value")
     private int value;
 
     @ColumnInfo(name = "ts")
+    @JsonProperty("ts")
     private long timestamp;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(final long id) {
-        this.id = id;
-    }
 
     public int getValue() {
         return value;
@@ -50,21 +44,19 @@ public class AbstractConfigurableEntity {
             return false;
         }
         final AbstractConfigurableEntity that = (AbstractConfigurableEntity) o;
-        return id == that.id &&
-                Float.compare(that.value, value) == 0 &&
-                Double.compare(that.timestamp, timestamp) == 0;
+        return value == that.value &&
+                timestamp == that.timestamp;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, value, timestamp);
+        return Objects.hash(value, timestamp);
     }
 
     @Override
     public String toString() {
-        return this.getClass().getSimpleName() + "{" +
-                "id=" + id +
-                ", value=" + value +
+        return "AbstractConfigurableEntity{" +
+                "value=" + value +
                 ", timestamp=" + timestamp +
                 '}';
     }

@@ -2,15 +2,11 @@ package com.sensor_emu.model.measurement;
 
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
-import androidx.room.PrimaryKey;
+import com.sensor_emu.model.AbstractEntity;
 import java.util.Objects;
 
 @Entity(tableName = "energy")
-public class Energy {
-
-    @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")
-    private long id;
+public class Energy extends AbstractEntity {
 
     @ColumnInfo(name = "BAT_V")
     private float batteryVoltage;
@@ -44,8 +40,7 @@ public class Energy {
     @Override
     public String toString() {
         return "Energy{" +
-                "id=" + id +
-                ", batteryVoltage=" + batteryVoltage +
+                "batteryVoltage=" + batteryVoltage +
                 ", batteryCurrent=" + batteryCurrent +
                 ", solarVoltage=" + solarVoltage +
                 ", solarCurrent=" + solarCurrent +
@@ -64,29 +59,19 @@ public class Energy {
             return false;
         }
         final Energy energy = (Energy) o;
-        return id == energy.id &&
-                Float.compare(energy.batteryVoltage, batteryVoltage) == 0 &&
+        return Float.compare(energy.batteryVoltage, batteryVoltage) == 0 &&
                 Float.compare(energy.batteryCurrent, batteryCurrent) == 0 &&
                 Float.compare(energy.solarVoltage, solarVoltage) == 0 &&
                 Float.compare(energy.solarCurrent, solarCurrent) == 0 &&
                 Float.compare(energy.nodeVoltage, nodeVoltage) == 0 &&
                 Float.compare(energy.nodeCurrent, nodeCurrent) == 0 &&
-                Float.compare(energy.timestamp, timestamp) == 0;
+                timestamp == energy.timestamp;
     }
 
     @Override
     public int hashCode() {
-        return Objects
-                .hash(id, batteryVoltage, batteryCurrent, solarVoltage, solarCurrent, nodeVoltage,
-                        nodeCurrent, timestamp);
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(final long id) {
-        this.id = id;
+        return Objects.hash(batteryVoltage, batteryCurrent, solarVoltage, solarCurrent, nodeVoltage,
+                nodeCurrent, timestamp);
     }
 
     public float getBatteryVoltage() {
