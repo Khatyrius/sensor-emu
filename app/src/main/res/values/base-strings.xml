@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+  <string name="app_name">Sensor Emulator</string>
+  <string name="intro_message">
+        <![CDATA[
+            Press SHOW LOG to view log data
+        ]]>
+    </string>
+</resources>
